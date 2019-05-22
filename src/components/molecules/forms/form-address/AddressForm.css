@@ -1,0 +1,15 @@
+.address__title {
+    margin: 10px 0 10px 8px;
+    text-align: left;
+}
+
+.address-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.address-form__button {
+    padding: 12px;
+}

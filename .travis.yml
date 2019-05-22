@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- 8.11.2
+
+branches:
+  only:
+  - develop
+
+script:
+- npm run test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: Rpdr0d15Jdm+RbQg6GDZGzyDTIGC8tF3ELz7WUrSEuJXaz+ysLeQV2VZI+U+5mUzZJImk5gGZck6f3oHritQ6vVHEakCWUosjNaNCa1zGjYfdVmz2L2ijPiN1POFC0p/ThdleYeU+RyHbiGQtepDhy34Qd6VYACuIKdx4VIi6DdkfLnQlyeQYQN+FVd/rNekvBUhO5QwRMrR4z93BIYMlLepWjP6qV262d20tcM/qZ6ilrY8JLvFXcG93zoTK8slijdWZ3aS45/vv+dOw1c6pQZVwQydwsaBPxX4DmHzmgvqsSF2VP4M/2mYKRNW1VGm1vWSYITFqF4KrbIA4AZhF9lRwvEsk3lZjuLt5iATAE2we/7BOAgzfZ9Ox/bEOXslFH/Vo0FkcPiH7a8DIwnmBKnrXq8uSRkg5YZ8EV3/oTeJAMQZvFD7B21eePIJhHufRJw4e7iVBXIB7L1wW5JRvsqsvJH8H69Gp3w5lewQm0o336BgLBc0d3Y4/+4bk1a+802sKDoK1wwPq8C/O6MQbU0YxqovKLotMfeCfJ/uvl5ZH5pyyEc3kzv2nHG9ixpSofLxbXYg5MmZIZEAYDxbuSenI1tbqnjuxcgpMd0vSDXnruGO4RtdzBEcByBxhmoNAduXNzQwa050BTczP5RUnkd6XuQP7N6uJNaiBKZ/wRE=
+  app: loft-taxi-mihanizm56
+  on: 
+    branch: develop

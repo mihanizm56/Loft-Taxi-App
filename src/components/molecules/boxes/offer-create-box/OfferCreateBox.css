@@ -1,0 +1,11 @@
+.offer-redirect-box__subtitle {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "OpenSans", "Verdana", "Arial", sans-serif;
+    line-height: 1.46429em;
+}
+
+.offer-title {
+    margin: 0;
+}
