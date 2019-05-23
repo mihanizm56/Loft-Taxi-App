@@ -47,11 +47,9 @@ export const mapDispatchToProps = dispatch => {
 	return {
 		fetchAllAddresses() {
 			dispatch(fetchAllAddressesAction());
-			// console.log("fetchAllAddressesAction");
 		},
 		chooseRoute(from, to) {
 			dispatch(fetchCoordsAction(from, to));
-			// console.log("fetchCoordsAction");
 		},
 		createNewOffer() {
 			dispatch(clearAdressRoute());

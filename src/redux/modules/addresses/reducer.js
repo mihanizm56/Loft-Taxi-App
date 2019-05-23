@@ -4,13 +4,12 @@ import lensPath from "ramda/src/lensPath";
 import set from "ramda/src/set";
 
 const initialState = {
-	allRoutes: [],
+	allRoutes: EMPTY_ARRAY,
 	offerDone: false,
-	choosenRouteCoords: [],
+	choosenRouteCoords: EMPTY_ARRAY,
 };
 
 const allRoutesLens = lensPath(["allRoutes"]);
-const stateLens = lensPath("");
 
 const routeMapStorage = (state = initialState, action) => {
 	switch (action.type) {
@@ -18,10 +17,10 @@ const routeMapStorage = (state = initialState, action) => {
 			return set(allRoutesLens, action.payload.routes, state);
 
 		case SAVE_CHOOSEN_COORDS_ROUTES:
-			return set(stateLens, { choosenRouteCoords: action.payload, offerDone: true }, state);
+			return { ...state, choosenRouteCoords: action.payload, offerDone: true };
 
 		case MAKE_NEW_OFFER:
-			return set(stateLens, { choosenRouteCoords: EMPTY_ARRAY, offerDone: false }, state);
+			return { ...state, choosenRouteCoords: EMPTY_ARRAY, offerDone: false };
 
 		default:
 			return state;

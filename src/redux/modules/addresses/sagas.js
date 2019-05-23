@@ -1,6 +1,4 @@
 import { call, put } from "redux-saga/effects";
-import { loginSuccessAction, loginFailedAction } from "./actions";
-import { fetchLoginRequest } from "../../../services";
 import { saveAllCoordsAction, saveChoosenCoordsAction } from "./actions";
 import { EMPTY_ARRAY } from "../../../constants";
 import { fetchAddressesRequest, fetchRouteRequest } from "../../../services";

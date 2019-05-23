@@ -88,12 +88,16 @@ export class MapBox extends Component {
 
 	removeLayer = () => {
 		const { map } = this;
+		if (map) {
+			if (map.getLayer("route")) {
+				console.log("test1");
+				map.removeLayer("route");
+			}
 
-		map.removeLayer("route");
-		map.removeSource("route");
-
-		if (map.getSource("route")) {
-			map.removeSource("route");
+			if (map.getSource("route")) {
+				console.log("test2");
+				map.removeSource("route");
+			}
 		}
 	};
 
@@ -104,6 +108,6 @@ export class MapBox extends Component {
 	};
 
 	render() {
-		return <div ref={this.mapContainer} className="map-container" onClick={this.test} />;
+		return <div ref={this.mapContainer} className="map-container" />;
 	}
 }
