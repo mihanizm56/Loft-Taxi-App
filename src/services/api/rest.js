@@ -9,6 +9,7 @@ export const post = ({ endpoint, data }) => {
 			Accept: "application/json, text/plain, */*",
 			"Content-Type": "application/json",
 		},
+		cors: "no-cors",
 		body: JSON.stringify(data),
 	};
 
