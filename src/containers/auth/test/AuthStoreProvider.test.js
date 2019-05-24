@@ -8,7 +8,7 @@ import * as middleware from "../../../redux/modules/auth/sagas";
 import * as actionsAuth from "../../../redux/modules/auth/actions";
 import * as actionsCredentials from "../../../redux/modules/credentials/actions";
 import * as actionsAdresses from "../../../redux/modules/addresses/actions";
-import { nullFunc } from "../../../utils";
+import { nullFunc, getAction } from "../../../utils";
 
 jest.mock("mapbox-gl/dist/mapbox-gl", () => ({
 	Map: () => ({}),
@@ -50,24 +50,19 @@ describe("AuthStoreProvider", () => {
 	});
 
 	describe("functionality of mapDispatchToProps", () => {
-		// it("signInUser with correct users data", () => {
-		// 	const loginRequestMock = jest.spyOn(middleware, "loginRequestAction");
-		// 	wrapper
-		// 		.find("WrappedContainer")
-		// 		.instance()
-		// 		.signInUser({ email: "testEmail", password: "testPassword" });
+		it("signInUser triggers loginRequestAction", async () => {
+			const loginRequestActionMock = jest.spyOn(actionsAuth, "loginRequestAction");
 
-		// 	expect(loginRequestMock).toHaveBeenCalledWith("testEmail", "testPassword");
-		// });
-		// it("dont signInUser with incorrect users data", () => {
-		// 	const loginRequestMock = jest.spyOn(middleware, "loginRequestAction");
-		// 	wrapper
-		// 		.find("WrappedContainer")
-		// 		.instance()
-		// 		.signInUser({ password: "testPassword" });
+			wrapper
+				.find("WrappedContainer")
+				.instance()
+				.signInUser({ email: "testEmail", password: "testPassword" });
 
-		// 	expect(loginRequestMock).not.toHaveBeenCalled();
-		// });
+			expect(await getAction(store, "LOGIN_STATE_PENDING")).toEqual({
+				payload: { email: "testEmail", password: "testPassword" },
+				type: "LOGIN_STATE_PENDING",
+			});
+		});
 		it("signOutUser", () => {
 			const signOutMock = jest.spyOn(actionsAuth, "logoutAction");
 			const clearCardDataMock = jest.spyOn(actionsCredentials, "clearCardDataAction");
