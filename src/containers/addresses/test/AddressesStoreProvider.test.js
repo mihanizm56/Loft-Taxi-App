@@ -33,48 +33,48 @@ describe("AddressesStoreProvider", () => {
 	});
 
 	describe("check setting props", () => {
-		it("should set component", () => {
+		it("set prop component", () => {
 			expect(wrapper.find(MockComponent).length).toBe(1);
 		});
-		it("should set allRoutes", () => {
+		it("set prop allRoutes", () => {
 			expect(wrapper.find(MockComponent).prop("allRoutes")).toEqual(initialState.routeMapStorage.allRoutes);
 		});
-		it("should set offerDone", () => {
+		it("set prop offerDone", () => {
 			expect(wrapper.find(MockComponent).prop("offerDoneStatus")).toEqual(initialState.routeMapStorage.offerDone);
 		});
-		it("should set choosenRouteCoords", () => {
+		it("set prop choosenRouteCoords", () => {
 			expect(wrapper.find(MockComponent).prop("arrayOfCoords")).toEqual(
 				initialState.routeMapStorage.choosenRouteCoords
 			);
 		});
-		it("should set chooseTripRoute", () => {
+		it("set prop chooseTripRoute", () => {
 			expect(wrapper.find(MockComponent).prop("chooseTripRoute")).toBeInstanceOf(Function);
 		});
 
-		it("should set createNewOffer", () => {
+		it("set prop createNewOffer", () => {
 			expect(wrapper.find(MockComponent).prop("createNewOffer")).toBeInstanceOf(Function);
 		});
 	});
 
 	describe("functionality of mapDispatchToProps", () => {
-		// it("fetchAllAddresses test when component did mount", () => {
-		// 	const fetchAllAddressesMock = jest.spyOn(middleware, "fetchAllAddressesAction");
-		// 	wrapper
-		// 		.find("WrappedContainer")
-		// 		.instance()
-		// 		.componentDidMount();
+		it("fetchAllAddresses test when component did mount", () => {
+			const fetchAllAddressesMock = jest.spyOn(actions, "fetchAllAddressesAction");
+			wrapper
+				.find("WrappedContainer")
+				.instance()
+				.componentDidMount();
 
-		// 	expect(fetchAllAddressesMock).toHaveBeenCalled();
-		// });
-		// it("chooseTripRoute test in component", () => {
-		// 	const fetchCoordsActionMock = jest.spyOn(middleware, "fetchCoordsAction");
-		// 	wrapper
-		// 		.find("WrappedContainer")
-		// 		.instance()
-		// 		.chooseTripRoute({ from: "place A", to: "place B" });
+			expect(fetchAllAddressesMock).toHaveBeenCalled();
+		});
+		it("chooseTripRoute test in component", () => {
+			const fetchCoordsActionMock = jest.spyOn(actions, "fetchCoordsAction");
+			wrapper
+				.find("WrappedContainer")
+				.instance()
+				.chooseTripRoute({ from: "place A", to: "place B" });
 
-		// 	expect(fetchCoordsActionMock).toHaveBeenCalled();
-		// });
+			expect(fetchCoordsActionMock).toHaveBeenCalledWith("place A", "place B");
+		});
 		it("clearAddress test in component", () => {
 			const clearAddressMock = jest.spyOn(actions, "clearAdressRoute");
 			wrapper
