@@ -1,13 +1,20 @@
 {
   "name": "loft-taxi-app",
+  "description": "test pet project",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "mihanizm56",
+    "email": "test@test.ru"
+  },
+  "main": "public/electron.js",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
+    "electron-is-dev": "^1.1.0",
     "lodash": "^4.17.11",
     "mapbox-gl": "^0.54.0",
     "ramda": "^0.26.1",
@@ -27,13 +34,17 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "cra-start": "rescripts start",
+    "postinstall": "electron-builder install-app-deps",
+    "start": "concurrently  \"npm run cra-start\" \"wait-on http://localhost:3000 && run-electron .\"",
+    "build": "rescripts build",
     "test": "set CI=true&& npm run test:all",
-    "test:coverage": "react-scripts test --coverage",
+    "test:coverage": "rescripts test --coverage",
     "precommit": "lint-staged",
     "flow": "flow",
-    "test:all": "react-scripts test --env=jsdom"
+    "test:all": "rescripts test --env=jsdom",
+    "pack": "npm run build && npm run electron-pack",
+    "stop": "taskkill /F /IM node.exe"
   },
   "browserslist": {
     "development": [
@@ -50,6 +61,12 @@
     ]
   },
   "devDependencies": {
+    "@rescripts/cli": "0.0.11",
+    "@rescripts/rescript-env": "0.0.10",
+    "concurrently": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "electron": "^6.0.5",
+    "electron-builder": "19.16.1",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
@@ -64,7 +81,8 @@
     "husky": "^1.2.1",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "wait-on": "^3.3.0"
   },
   "lint-staged": {
     "*.{js, jsx}": [
@@ -82,5 +100,45 @@
     "hooks": {
       "pre-commit": "npm run test"
     }
+  },
+  "build": {
+    "appId": "test_app_id",
+    "productName": "My_First_Electron_App",
+    "win": {
+      "publisherName": "my Company",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "perMachine": true,
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "Electron_package"
+    },
+    "electronDownload": {
+      "cache": "./cache"
+    },
+    "files": [
+      "./build/**/*",
+      "node_modules/**/*",
+      "./public/electron.js"
+    ],
+    "extends": null,
+    "nodeGypRebuild": "false",
+    "npmRebuild": "false"
+  },
+  "rescripts": [
+    "env"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
