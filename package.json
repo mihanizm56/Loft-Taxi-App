@@ -7,6 +7,7 @@
     "name": "mihanizm56",
     "email": "test@test.ru"
   },
+  "homepage": ".",
   "main": "public/electron.js",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
@@ -36,7 +37,7 @@
   "scripts": {
     "cra-start": "rescripts start",
     "postinstall": "electron-builder install-app-deps",
-    "start": "concurrently  \"npm run cra-start\" \"wait-on http://localhost:3000 && run-electron .\"",
+    "start": "concurrently  \"npm run cra-start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder -w",
     "build": "rescripts build",
     "test": "set CI=true&& npm run test:all",
@@ -129,7 +130,6 @@
     },
     "files": [
       "./build/**/*",
-      "node_modules/**/*",
       "./public/electron.js"
     ],
     "extends": null,

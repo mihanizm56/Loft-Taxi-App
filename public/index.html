@@ -7,9 +7,14 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <title>Loft Taxi</title>
     <style>
-      #root{
+      body {
         width: 100%;
         height: 100vh;
+      }
+
+      #root{
+        height: 100%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,18 +23,21 @@
       .loader{
         height: 100px;
         width: 100px;
-        background-image: url(./images/icon-loading.svg);
+        background-image: url(./images/icon-wifi.svg);
         background-repeat: no-repeat;
         background-size: contain;
-        animation: circleFull 2.2s linear infinite;
+        animation: download 2.2s linear infinite;
       }
 
-      @keyframes circleFull {
-        from {
-            transform: rotate3d(0, 0, 1, -180deg);
+      @keyframes download {
+        0% {
+          opacity: 0;
         }
-        to {
-            transform: rotate3d(0, 0, 1, 180deg);
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
         }
       }
     </style>
