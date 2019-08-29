@@ -37,6 +37,7 @@
     "cra-start": "rescripts start",
     "postinstall": "electron-builder install-app-deps",
     "start": "concurrently  \"npm run cra-start\" \"wait-on http://localhost:3000 && run-electron .\"",
+    "electron-pack": "electron-builder -w",
     "build": "rescripts build",
     "test": "set CI=true&& npm run test:all",
     "test:coverage": "rescripts test --coverage",
